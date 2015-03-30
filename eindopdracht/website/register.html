@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Registeren Form</title>
+  <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+  <section class="container">
+    <div class="register">
+      <h1>Registeren bij ReST Race</h1>
+
+        <p><input type="text" id="firstname" name="firstname" value="" placeholder="voornaam"></p>
+        <p><input type="text" id="middleName" name="middleName" value="" placeholder="tussenvoegsel"></p>
+        <p><input type="text" id="lastName" name="lastName" value="" placeholder="achternaam"></p>
+        <p><input type="text" id="age" name="age" value="" placeholder="Leeftijd"></p>
+        <p><input type="text" id="username" name="username" value="" placeholder="username"></p>
+        <p><input type="password" id="password" name="password" value="" placeholder="Wachtwoord"></p>
+        <button id="btnregister">Registeer</button>
+    </div>
+
+        <div class="login-help">
+      <p>Fout geklikt?<a href="login"> Klik dan hier om terug naar inloggen te gaan</a>.</p>
+    </div>
+  </section>
+
+</body>
+
+ <script type="text/javascript">
+
+
+      $("#btnregister").on("click", function()
+      {
+
+          var _firstname = $("#firstname").val();
+          var _middleName = $("#middleName").val();
+          var _lastName = $("#lastName").val();
+          var _age = $("#age").val();
+          var _username = $("#username").val();
+          var _password = $("#password").val();
+          $.post("users/signup", { firstName: _firstname,  middleName: _middleName,  lastName: _lastName,  age: _age,  username: _username, password: _password, admin: false}, function(response)
+          {
+
+            if(response._id != null)
+            {
+              localStorage.setItem("user", JSON.stringify(response)); 
+              window.location = "index";
+            }
+            else
+            {
+              alert("Er ging iets fout, vul alles goed in!");
+            }
+          });
+      });
+ </script>

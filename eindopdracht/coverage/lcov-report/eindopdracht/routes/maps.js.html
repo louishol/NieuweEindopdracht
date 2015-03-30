@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for eindopdracht\routes\maps.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">eindopdracht\routes\maps.js</span></h1>
+    <h2>
+        Statements: <span class="metric">28% <small>(7 / 25)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">28% <small>(7 / 25)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">eindopdracht/routes/</a> &#187; maps.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var express = require('express');
+var router = express.Router();
+var http = require("https");
+&nbsp;
+router.get('/', <span class="fstat-no" title="function not covered" >function(req,res) {</span>
+<span class="cstat-no" title="statement not covered" >	res.send("ok");</span>
+});
+/* GET home page. */
+router.get('/:lat/:lng', <span class="fstat-no" title="function not covered" >function(req, res, next) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >	var lat = req.params.lat;</span>
+<span class="cstat-no" title="statement not covered" >	var lng = req.params.lng;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >	var options = {</span>
+	  host: 'maps.googleapis.com',
+	  path: "/maps/api/place/nearbysearch/json?key=AIzaSyBiRwy-lPEwPJkfOOG0XPpeT_OCG88Ust8&amp;location=" + lat + ","+ lng + "&amp;radius=5000&amp;type=cafe",
+	  method: 'GET',
+	  headers: { 'Content-Type': 'application/json' }
+	};
+<span class="cstat-no" title="statement not covered" >	getJSON(options,</span>
+<span class="fstat-no" title="function not covered" >		function(statusCode, result)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            res.statusCode = statusCode;</span>
+<span class="cstat-no" title="statement not covered" >            res.send(result);</span>
+        });
+});
+&nbsp;
+<span class="fstat-no" title="function not covered" >function getJSON(options, onResult)</span>
+{
+<span class="cstat-no" title="statement not covered" >	var req = http.request(options, <span class="fstat-no" title="function not covered" >function(res)</span></span>
+    {
+<span class="cstat-no" title="statement not covered" >        var output = '';</span>
+<span class="cstat-no" title="statement not covered" >        console.log(options.host + ':' + res.statusCode);</span>
+<span class="cstat-no" title="statement not covered" >        res.setEncoding('utf8');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        res.on('data', <span class="fstat-no" title="function not covered" >function (chunk) {</span></span>
+<span class="cstat-no" title="statement not covered" >            output += chunk;</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        res.on('end', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            var obj = JSON.parse(output);</span>
+<span class="cstat-no" title="statement not covered" >            onResult(res.statusCode, obj);</span>
+        });
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    req.on('error', <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+        //res.send('error: ' + err.message);
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    req.end();</span>
+}
+&nbsp;
+module.exports = router;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 30 2015 16:47:05 GMT+0200 (West-Europa (zomertijd))</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

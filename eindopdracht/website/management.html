@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<title>Management</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
+
+		<script src="js/Management.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+
+	<h1 style="display:block; text-align:center;" >Beheer pagina</h1>
+	<p align="center">Klik <a href="index">hier</a> om terug te gaan naar index.</p>
+
+  	<p align="center">Welkom op de beheer pagina, hier kunnen races bekeken, aangemaakt, gewijzigd en verwijderd worden.</p>
+
+  	<div data-role="tabs" id="tabs">
+	  <div data-role="navbar">
+	    <ul>
+	      <li><a href="#one" data-ajax="false">Races</a></li>
+	      <li><a href="#two" data-ajax="false">Aanmaken</a></li>
+	      <li><a href="#three" data-ajax="false">Aanpassen</a></li>
+	      <li><a href="#four" data-ajax="false">Verwijderen</a></li>
+	    </ul>
+	  </div>
+	  <div id="one" class="ui-body-d ui-content">
+	  	<h3>Lijst met alle races</h3>
+	    <ul id="listview" data-role="listview" data-inset="true">
+	       
+	    </ul>
+	  </div>
+	  <div id="two">
+	    <p><input type="text" id="racename" name="name" value="" placeholder="Naam"></p>
+        <p><input type="text" id="racedescrip" name="description" value="" placeholder="Beschrijving"></p>
+         <p><input type="text" id="racestartdate" name="startdate" value="" placeholder="Start datum (YYYY-mm-dd)"></p>
+        <select id="racestatus" style="width: 100%;">
+        	<option value="Open">Open</option>
+        	<option value="Closed">Closed</option>
+        </select>
+        <h3 style="text-align:center; background-color: #D0F5F3"> Huidige Waypoints</h3>
+
+
+        <ul id="waypoints" data-role="listview" data-inset="true">
+	      
+	    </ul>
+	   	<h3 style="text-align:center; background-color: #D0F5F3"> Zoeken naar Waypoints</h3>
+
+	   	<p>
+	   		<input type="text" id="geocreate" name="name" value="" placeholder="Zoekterm">
+	   	</p>
+
+
+	   	<h3 style="text-align:center; background-color: #D0F5F3"> Resultaten</h3>
+        <ul id="resultpoints" data-role="listview" data-inset="true">
+	    </ul>
+
+        <p class="submit"><input id="saverace" type="submit" name="commit" value="Voeg race toe"></p>
+	  </div>
+
+
+	  <div id="three">
+	  		<h3>Race aanpassen</h3>
+	  		<select id="races"  style="width: 100%;">
+			    <option value="standaart" disabled="disabled" selected="selected">Kies een race uit.</option>
+			</select>
+
+
+
+	     <p><input type="text" id="editracename" name="name" value="" placeholder="Naam"></p>
+        <p><input type="text" id="editracedescrip" name="description" value="" placeholder="Beschrijving"></p>
+         <p><input type="text" id="editracestartdate" name="startdate" value="" placeholder="Start datum (YYYY-mm-dd)"></p>
+        <select id="editracestatus" style="width: 100%;">
+        	<option value="Open">Open</option>
+        	<option value="Closed">Closed</option>
+        </select>
+        <h3 style="text-align:center; background-color: #D0F5F3"> Huidige Waypoints</h3>
+
+
+        <ul id="editwaypoints" data-role="listview" data-inset="true">
+	      
+	    </ul>
+	   	<h3 style="text-align:center; background-color: #D0F5F3"> Zoeken naar Waypoints</h3>
+
+	   	<p>
+	   		<input type="text" id="geoedit" name="name" value="" placeholder="Zoekterm">
+	   	</p>
+
+
+	   	<h3 style="text-align:center; background-color: #D0F5F3"> Resultaten</h3>
+        <ul id="editresultpoints" data-role="listview" data-inset="true">
+	    </ul>
+
+        <p class="submit"><input id="editrace" type="submit" name="commit" value="Pas race aan"></p>
+
+
+
+
+	  </div>
+	  <div id="four">
+	  	<h3>Verwijder een race</h3>
+	    <ul id="listviewremove"   data-role="listview" data-inset="true">
+	       
+	    </ul>
+
+	  </div>
+	</div>
+
+
+	<div id="dialog-confirm"></div>
+
+
+</body>
+
+<script type="text/javascript">
+
+	$(document).ready(function()
+	{
+		$("#tabs").tabs();
+	
+		//section Races Read
+		getAllRaces(function(races)
+		{
+			for(var race in races)
+			{
+				$("#listview").append('<li class="' + races[race]._id + '">' + races[race].name + ' - ' + races[race].description + ' <span style="float:right;"> Waypoints : ' + races[race].waypoints.length + ' |  Status : ' + races[race].status + '</span></li>');
+				$("#listviewremove").append('<li data-icon="false"><a class="' + races[race]._id + '" id="' + races[race]._id + '">' + races[race].name + ' - ' + races[race].description + ' <span style="float:right;"> Waypoints : ' + races[race].waypoints.length + ' |  Status : ' + races[race].status + '</span></a></li>');
+				$("#races").append('<option value="' + races[race]._id + '">' + races[race].name + ' - ' + races[race].description + '.</option>');
+			}
+			// $("#listview").listview("refresh");
+			// $("#listviewremove").listview("refresh");
+		});
+		//---------------------
+		//section Races Create
+		getGoogleMapsGeoCreate();
+		
+		$(document.body).on('click', '#resultpoints li a' ,function(){
+
+			var name = $(this).text();
+			var placeid = $(this).attr("place-id");
+			var lng = $(this).attr("lng");
+			var lat = $(this).attr("lat");
+			$("#waypoints").append('<li><a  lat="' + lat+ '" lng="' + lng+ '" place-id="' + placeid + '">' + name + '</a></li>');
+			//$("#waypoints").listview("refresh");
+		});
+		$("#saverace").on("click", function()
+		{
+			saveRace();
+		});
+		$(document.body).on('click', '#waypoints li' ,function(){
+			$(this).remove();
+		});
+
+
+		//section Races Delete
+		$(document.body).on('click', '#listviewremove li a' ,function(){
+
+			var raceid = $(this).attr("id");
+			fnOpenNormalDialog(function(response)
+			{
+				if(response)
+				{
+					deleteRaceByID(raceid, function(response)
+					{
+						alert("Verwijderd");
+						$('.'+raceid).remove();
+						reloadPage();
+					});
+				}
+			});
+		});
+
+		//section Races Edit
+
+		getGoogleMapsGeoEdit();
+
+		$("#races").on("change", function()
+		{
+			var raceid = $("#races").val();
+			getRaceById(raceid, function(race)
+			{
+
+				$("#editracename").val(race.name);
+				$("#editracedescrip").val(race.description);
+				$("#editracestartdate").val(race.startdatum);
+				$("#editracestatus").val(race.status);
+				$("#editwaypoints").empty();
+
+				for(var index in race.waypoints)
+				{
+					var waypoint = race.waypoints[index];
+					$("#editwaypoints").append('<li><a way-id="' + waypoint._id + '" lat="' + waypoint.latitude+ '" lng="' + waypoint.longitude + '" place-id="' + waypoint.placeid + '">' + waypoint.name + '</a></li>');
+				}
+			});
+
+		});
+
+		$(document.body).on('click', '#editresultpoints li a' ,function(){
+
+			var name = $(this).text();
+			var placeid = $(this).attr("place-id");
+			var lng = $(this).attr("lng");
+			var lat = $(this).attr("lat");
+			$("#editwaypoints").append('<li><a  lat="' + lat+ '" lng="' + lng+ '" place-id="' + placeid + '">' + name + '</a></li>');
+			//$("#waypoints").listview("refresh");
+		});
+		$(document.body).on('click', '#editwaypoints li' ,function(){
+			$(this).remove();
+		});
+
+		$("#editrace").on("click", function()
+		{
+			editRace($("#races").val());
+		});
+
+
+
+		});
+
+</script>
+
+</html>

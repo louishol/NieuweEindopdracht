@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for eindopdracht\websocket\websocket.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">eindopdracht\websocket\websocket.js</span></h1>
+    <h2>
+        Statements: <span class="metric">38.1% <small>(8 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">38.1% <small>(8 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">eindopdracht/websocket/</a> &#187; websocket.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Port where we'll run the websocket server
+var webSocketsServerPort = 1337;
+ 
+// websocket and http servers
+var webSocketServer = require('websocket').server;
+var http = require('http');
+// list of currently connected clients (users)
+var clients = [ ];
+/**
+ * HTTP server
+ */
+var server = http.createServer(<span class="fstat-no" title="function not covered" >function(request, response) {</span>
+    // Not important for us. We're writing WebSocket server, not HTTP server
+});
+server.listen(webSocketsServerPort, <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >    console.log((new Date()) + " Server is listening on port " + webSocketsServerPort);</span>
+});
+/**
+ * WebSocket server
+ */
+var wsServer = new webSocketServer({
+    // WebSocket server is tied to a HTTP server. WebSocket request is just
+    // an enhanced HTTP request. For more info http://tools.ietf.org/html/rfc6455#page-6
+    httpServer: server
+});
+&nbsp;
+wsServer.on('request', <span class="fstat-no" title="function not covered" >function(request) {</span>
+<span class="cstat-no" title="statement not covered" >console.log((new Date()) + ' Connection from origin ' + request.origin + '.');</span>
+// accept connection - you should check 'request.origin' to make sure that
+// client is connecting from your website
+// (http://en.wikipedia.org/wiki/Same_origin_policy)
+<span class="cstat-no" title="statement not covered" >var connection = request.accept(null, request.origin); </span>
+// we need to know client index to remove them on 'close' event
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var index = clients.push(connection) - 1;</span>
+<span class="cstat-no" title="statement not covered" >console.log("Nieuwe connectie, aantal connecites zijn :" + clients.length);</span>
+// user sent some message
+<span class="cstat-no" title="statement not covered" >connection.on('message', <span class="fstat-no" title="function not covered" >function(message) {</span></span>
+<span class="cstat-no" title="statement not covered" >    var _message  = JSON.parse(message.utf8Data);</span>
+<span class="cstat-no" title="statement not covered" >    var obj = </span>
+    {
+        race: _message.race,
+        user: _message.user,
+        waypoint: _message.waypoint
+    }
+<span class="cstat-no" title="statement not covered" >    var json = JSON.stringify({ type:'message', data: obj });</span>
+<span class="cstat-no" title="statement not covered" >    for (var i=0; i &lt; clients.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        clients[i].sendUTF(json);</span>
+    }
+});
+// user disconnected
+<span class="cstat-no" title="statement not covered" >connection.on('close', <span class="fstat-no" title="function not covered" >function(connection) {</span></span>
+        // remove user from the list of connected clients
+<span class="cstat-no" title="statement not covered" >        clients.splice(index, 1);</span>
+    
+});
+&nbsp;
+});</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 30 2015 16:47:05 GMT+0200 (West-Europa (zomertijd))</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

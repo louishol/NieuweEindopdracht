@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for test\testData.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">test\testData.js</span></h1>
+    <h2>
+        Statements: <span class="metric">19.23% <small>(5 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">19.23% <small>(5 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">test/</a> &#187; testData.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var async = require('async');
+var mongoose = require('mongoose');
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >function fillUsers(done){</span>
+<span class="cstat-no" title="statement not covered" >	var User = mongoose.model('User');</span>
+<span class="cstat-no" title="statement not covered" >	User.remove({}, <span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >		async.parallel([</span>
+<span class="fstat-no" title="function not covered" >			function(cb) {</span> <span class="cstat-no" title="statement not covered" >new User({firstName: 'Louis', middleName: '', lastName: 'Hol', age: 20, admin: true, local: {username: "louis", password:"louis"}}).save(cb); </span>},
+<span class="fstat-no" title="function not covered" >			function(cb) {</span> <span class="cstat-no" title="statement not covered" >new User({firstName: 'Jarno', middleName: 'van', lastName: 'Wijgerden', age: 21, admin: true, local: {username: "jarno", password:"jarno"}}).save(cb); </span>},
+<span class="fstat-no" title="function not covered" >			function(cb) {</span> <span class="cstat-no" title="statement not covered" >new User({firstName: 'Rick', middleName: 'de', lastName: 'Jong', age: 24, admin: false, local: {username: "james", password:"dejong"}}).save(cb); </span>},
+<span class="fstat-no" title="function not covered" >			function(cb) {</span> <span class="cstat-no" title="statement not covered" >new User({firstName: 'James', middleName: 'de', lastName: 'Jong', age: 22, admin: false, local: {username: "rick", password:"dejong"}}).save(cb); </span>},
+<span class="fstat-no" title="function not covered" >			function(cb) {</span> <span class="cstat-no" title="statement not covered" >new User({firstName: 'Martijn', middleName: '', lastName: 'Schuurmans', age: 25, admin: true, local: {username: "martijn", password:"schuurmans"}}).save(cb); </span>}
+		], <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >			done();</span>
+		})
+	});
+};
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >function fillRaces(done){</span>
+<span class="cstat-no" title="statement not covered" >	var Race = mongoose.model('Race');</span>
+<span class="cstat-no" title="statement not covered" >	Race.remove({}, <span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >		async.parallel([</span>
+<span class="fstat-no" title="function not covered" >			function(cb) </span>
+			{ 
+<span class="cstat-no" title="statement not covered" >				var way = [{ placeid: "ChIJR10vFTJfxkcRaYKiRpR6sqY", name: "De Kletskop", latitude: "51.877266", longitude: "5.288234", waypoints: way}];</span>
+<span class="cstat-no" title="statement not covered" >				new Race({name: 'Race 1', description: 'Leuke race 1', startdatum: '2015-10-10', status: "Open"}).save(cb); </span>
+			},
+<span class="fstat-no" title="function not covered" >			function(cb) {</span> <span class="cstat-no" title="statement not covered" >new Race({name: 'Race 2', description: 'Leuke race 2', startdatum: '2015-10-09', status: "Open"}).save(cb); </span>},
+<span class="fstat-no" title="function not covered" >			function(cb) {</span> <span class="cstat-no" title="statement not covered" >new Race({name: 'Race 3', description: 'Leuke race 3', startdatum: '2015-10-08', status: "Closed"}).save(cb); </span>},
+<span class="fstat-no" title="function not covered" >			function(cb) {</span> <span class="cstat-no" title="statement not covered" >new Race({name: 'Race 4', description: 'Leuke race 4', startdatum: '2015-10-07', status: "Open"}).save(cb); </span>},
+<span class="fstat-no" title="function not covered" >			function(cb) {</span> <span class="cstat-no" title="statement not covered" >new Race({name: 'Race 5', description: 'Leuke race 5', startdatum: '2015-10-06', status: "Open"}).save(cb); </span>},
+&nbsp;
+		], <span class="fstat-no" title="function not covered" >function() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			done();</span>
+		})
+	});
+};
+&nbsp;
+module.exports = {
+	fillTestdata: <span class="fstat-no" title="function not covered" >function(done){</span>
+<span class="cstat-no" title="statement not covered" >		async.parallel([</span>
+			fillUsers,
+			fillRaces
+		], <span class="fstat-no" title="function not covered" >function(){</span> <span class="cstat-no" title="statement not covered" >done() }</span>);
+	}
+}</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 30 2015 16:54:03 GMT+0200 (West-Europa (zomertijd))</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

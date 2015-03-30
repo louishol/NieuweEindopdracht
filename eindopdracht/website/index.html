@@ -1,0 +1,136 @@
+	<!DOCTYPE html>
+<html>
+<head>
+  	<title>Inschrijf pagina</title>
+
+  	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="js/index.js"></script>
+	  	<link rel="stylesheet" href="css/style.css">
+	  	<script src="js/websocket.js"></script>
+	  
+</head>
+<body>
+
+	<div align="right">
+		<button id="btnmanagemant" style="width:10%; margin-top:-10%">managemant</button>
+		<button id="btnlogout" style="width:10%; margin-top:-10%">Uitloggen</button>
+	</div>
+
+	<h1 style="display:block; text-align:center;" >Inschrijf pagina</h1>
+	<p id="login" style="display:block; text-align:center;" > U bent ingelogd als </p>
+  	<p align="center">Welkom op de Inschrijf pagina, hier kunt u uwzelf inschrijven voor een race en toevoegen aan waypoints</p>
+  	<p align="center">Je kunt jezelf toevoegen aan een waypoint door een race te selecteren en daarna op de waypoint te klikken</p>
+
+	<div align="center">
+  	<label for="races" >race:</label>
+	<select id="races">
+	    <option value="standaart" disabled="disabled" selected="selected">Kies een race uit.</option>
+	</select>
+	<button id="btngo" style="width:10%">Toon details</button>
+	</div>
+		
+		<button id="btnaddrace" style=" text-align: center; position: absolute;   margin-left: 40%; margin-top:20px;">Klik hier om deel te nemen aan de race !</button>
+		<ul class="noicon" id="waypoints"></ul>
+
+
+</body>
+
+<script type="text/javascript">
+
+		$(document).ready(function()
+		{
+			$("#btnaddrace").hide();
+			//check for user login
+			var user = JSON.parse(localStorage.getItem("user"));
+			if (user == null)
+			{
+				document.getElementById("btnlogout").childNodes[0].nodeValue= "Inloggen";
+			}
+			$("#btnlogout").on("click", function()
+        	{
+
+        		$.post("users/logout", function()
+        		{
+	        		localStorage.user = null
+	        		window.location = "login";
+        		});
+			});
+			$("#btnmanagemant").on("click", function()
+        	{
+        		window.location = "management";
+			});
+
+			if(user != null)
+				$("#login").append(user.fullName);
+			//section Races Read
+			getAllRaces(function(races)
+			{
+				for(var race in races)
+				{
+					if(races[race].status == "Open")
+					{
+						$("#races").append('<option value="' + races[race]._id + '">' + races[race].name + ' - ' + races[race].description + '.</option>');
+					}
+				}
+			});
+
+			$("#btngo").on("click", function()
+            {
+            	$("#waypoints").empty();
+				$("#users").empty();
+				$("#btnaddrace").hide();
+            	getRaceById($("#races").val(),function(response)
+				{
+					if(userIsMemberOfRace(response))
+	            	{
+						showDetails(response);
+	            	}
+	            	else if(user == null)
+	            	{
+	            		alert("Log eerst in");
+	            	}
+	            	else
+	            	{
+	            		$("#btnaddrace").show();
+	            	}
+				});
+            	
+            });
+			$(document.body).on('click', '#wayp' ,function(){
+				if(user != null)
+				{
+
+					var waypointid = $(this).attr("data-id");
+					var raceid = $("#races").val();
+					var userid = user._id;
+					addUserToWaypoint(raceid,waypointid, userid, function(data)
+					{
+						if(data != "err")
+						{
+							var message = {"race": raceid, "user": user.fullName, "waypoint": waypointid};
+							sendMessageToClients(JSON.stringify(message));
+							
+						}
+					});
+				}
+				else
+				{
+					alert("Je moet hiervoor ingelogd zijn. Je word nu doorverwezen naar de inlog pagina");
+					window.location = "login";
+
+				}
+				
+			});
+			$("#btnaddrace").on("click", function()
+			{
+				var raceid = $("#races").val();
+				var userid = user._id;
+				addUserToRace(raceid, userid);
+				
+			});
+
+		});
+
+</script>
+
+</html>
